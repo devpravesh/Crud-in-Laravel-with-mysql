@@ -30,7 +30,7 @@
     <p id='message'>
       Congratulations, {{$name}} your account has been successfully created.
     </p>
-    <a href="/insert" id="contBtn">Continue</a>
+    <a href="/index" id="contBtn">Continue</a>
   </div>
   
 

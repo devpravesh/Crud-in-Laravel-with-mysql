@@ -1,15 +1,26 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD</title>
-    
-  <link rel="stylesheet" href="{{ URL::asset('css/form.css') }}" />
-</head>
+@extends('layout.master')  
+@section('title', 'Registration page')
 <body>
-   
-<form method="post" action="/create" >  
+    <script>  
+        function validateform(){  
+        var name=document.myform.first_name.value;  
+        var secondname=document.myform.last_name.value; 
+        var quali=document.myform.qualifications.value;
+        if (name==null || name==""){  
+          alert("Name can't be blank");  
+          return false;  
+        }else if (secondname==null || secondname==""){  
+          alert("Last Name can't be blank");  
+          return false;   
+        }else if(quali==null || quali==""){ 
+            alert("Please Fill Qualification"); 
+            return false; 
+          }
+          
+          onsubmit="return validateform()"
+        }  
+        </script> 
+<form method="post" action="/create" name="myform" onsubmit="validateform()">  
     @csrf 
     <div class="form-group">      
         <label for="first_name">First Name:</label><br/><br/>  
