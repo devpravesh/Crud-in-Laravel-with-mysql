@@ -49,7 +49,7 @@ class StudentController extends Controller
         $qualifications = $request->input('qualifications');
         $data = array('first_name' => $name, "last_name" => $last_name, "gender" => $gender, "qualifications" => $qualifications);
         DB::table('user')->insert($data);
-        return view('/success',['name'=>$name]);
+        return view('/success', ['name' => $name]);
     }
 
     public function destroy($id)
@@ -68,15 +68,21 @@ class StudentController extends Controller
         // dd($this->leave_applicable_genders); 
         return view('update', ['users' => $users, 'leave_applicable_genders' => $this->leave_applicable_genders]);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = DB::find($id);
-        $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
-        $user->gender = $request->input('gender');
-        $user->qualifications = $request->input('qualifications');
-        $user->update();
-        return redirect()->back()->with('status','User Updated Successfully');
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'gender' => 'required',
+            'qualifications' => 'required'
+        ]);
+        $user = DB::table('user')->find($request->id);
+        $fName = $request->first_name;
+        $lName = $request->last_name;
+        $gender = $request->gender;
+        $qualifications = $request->qualifications;
+        $user = DB::update('update user set first_name=?,last_name=?,gender=?,qualifications=? where id=?', [$fName,$lName,$gender,$qualifications, $user->id]);
+      
+        return redirect('/index');
     }
-
 }

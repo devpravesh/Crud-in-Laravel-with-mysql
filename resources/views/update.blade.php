@@ -3,10 +3,12 @@
 <body>
 
     <form method="post" action="/update">
-        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
         @foreach ($users as $user)
+        <input type="hidden" name="id" value="{{$user->id}}">
+
             @csrf
-            @method('PUT')
+            {{-- @method('PUT') --}}
             <div class="form-group">
                 <label for="first_name">First Name:</label><br /><br />
                 <input type="text" class="form-control" value="{{ $user->first_name }}"

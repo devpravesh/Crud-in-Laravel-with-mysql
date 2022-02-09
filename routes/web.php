@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::get('/', function () {
@@ -31,9 +30,9 @@ Route::get('/insert', function () {
 
 
 
-// Route::get('/update', function () {  
-//     return view('update');  
-// });
+Route::get('/table', function () {  
+    return view('table');  
+});
 Route::get('/index','StudentController@index');
 
 
@@ -45,5 +44,5 @@ Route::delete('/index{id?}', 'StudentController@destroy')
 
 Route::get('/edit{id?}','StudentController@edit')
     ->name('users.edit');
-// Route::get('edit-student/{id}', [StudentController::class, 'edit']);
-Route::put('/update{id?}', 'StudentController@update');
+// Route::get('update/{id}', [StudentController::class, 'update']);
+Route::post('/update/{id?}', 'StudentController@update');
