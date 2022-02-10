@@ -81,6 +81,7 @@ class StudentController extends Controller
         $lName = $request->last_name;
         $gender = $request->gender;
         $qualifications = $request->qualifications;
+        
         $user = DB::update('update user set first_name=?,last_name=?,gender=?,qualifications=? where id=?', [$fName,$lName,$gender,$qualifications, $user->id]);
       
         return redirect('/index');

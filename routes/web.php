@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 // Route::get('/forms', function ()      
 //  {      
@@ -33,7 +33,8 @@ Route::get('/insert', function () {
 Route::get('/table', function () {  
     return view('table');  
 });
-Route::get('/index','StudentController@index');
+Route::get('/index','StudentController@index')
+    ->name('createpage');
 
 
 Route::post('/create{name?}','StudentController@store');
@@ -46,3 +47,7 @@ Route::get('/edit{id?}','StudentController@edit')
     ->name('users.edit');
 // Route::get('update/{id}', [StudentController::class, 'update']);
 Route::post('/update/{id?}', 'StudentController@update');
+
+
+
+
